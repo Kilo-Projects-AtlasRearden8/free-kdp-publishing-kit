@@ -1,0 +1,291 @@
+/* Free KDP Publishing Kit — shared styles */
+/* Large-print friendly: 18px base, high contrast, roomy targets */
+
+:root {
+  --ink: #111111;
+  --paper: #ffffff;
+  --muted: #444444;
+  --line: #999999;
+  --rule: #cccccc;
+  --accent: #0b5ed7;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 18px;
+}
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial,
+    sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+  line-height: 1.55;
+  margin: 0;
+  padding: 16px 24px;
+  -webkit-font-smoothing: antialiased;
+}
+
+.sheet {
+  max-width: 820px;
+  margin: 0 auto;
+  background: var(--paper);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.25;
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2rem;
+  border-bottom: 4px solid var(--ink);
+  padding-bottom: 10px;
+  margin-bottom: 26px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin: 34px 0 14px;
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin: 26px 0 10px;
+}
+
+p {
+  margin: 0 0 16px;
+}
+
+ul,
+ol {
+  margin: 4px 0 18px;
+  padding-left: 26px;
+}
+
+li {
+  margin-bottom: 10px;
+}
+
+.intro {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 26px;
+}
+
+.credit {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 2px solid var(--ink);
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+.credit a {
+  color: var(--ink);
+  text-decoration: underline;
+}
+
+/* ---------- Fillable controls ---------- */
+
+.field-row {
+  margin: 0 0 18px;
+  padding: 12px 14px;
+  border: 2px solid var(--line);
+  border-radius: 6px;
+  background: #fafafa;
+}
+
+.field-row label {
+  display: block;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: var(--ink);
+}
+
+.field-row input,
+.field-row select,
+.field-row textarea {
+  width: 100%;
+  font: inherit;
+  font-size: 1.15rem;
+  padding: 10px 12px;
+  border: 2px solid var(--line);
+  border-radius: 5px;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.field-row textarea {
+  min-height: 92px;
+  resize: vertical;
+}
+
+.field-row input:focus,
+.field-row select:focus,
+.field-row textarea:focus {
+  outline: 4px solid var(--accent);
+  border-color: var(--accent);
+}
+
+.checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 34px;
+  margin-top: 6px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-item input {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  margin: 0;
+}
+
+.checkbox-item label {
+  font-weight: normal;
+  font-size: 1.05rem;
+  margin: 0;
+  cursor: pointer;
+}
+
+.optional {
+  font-weight: normal;
+  font-size: 0.95rem;
+  color: var(--muted);
+}
+
+/* ---------- Tables ---------- */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 14px 0 26px;
+}
+
+th,
+td {
+  border: 1.5px solid var(--rule);
+  padding: 10px 12px;
+  text-align: left;
+  font-size: 1.05rem;
+  vertical-align: top;
+}
+
+th {
+  background: #f0f0f0;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+td.blank {
+  height: 56px;
+}
+
+td.done {
+  width: 70px;
+  text-align: center;
+  font-size: 1.4rem;
+}
+
+/* ---------- Misc ---------- */
+
+.kicker {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.note {
+  background: #eef2f7;
+  border-left: 5px solid var(--accent);
+  padding: 12px 16px;
+  margin: 18px 0;
+  font-size: 1rem;
+}
+
+.page-break {
+  page-break-before: always;
+  break-before: page;
+}
+
+.no-print {
+  display: none;
+}
+
+/* ---------- Print ---------- */
+
+@media print {
+  body {
+    padding: 0;
+    background: var(--paper);
+  }
+
+  .sheet {
+    max-width: 100%;
+  }
+
+  .no-print,
+  .dont-print {
+    display: none !important;
+  }
+
+  h1,
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+
+  table,
+  .field-row,
+  .note {
+    page-break-inside: avoid;
+  }
+
+  .field-row {
+    background: var(--paper) !important;
+    border-color: var(--rule) !important;
+  }
+
+  .field-row input,
+  .field-row select,
+  .field-row textarea {
+    background: var(--paper) !important;
+    color: var(--ink) !important;
+    border-color: var(--rule) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .checkbox-item label {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  a[href]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+}
+
+@page {
+  margin: 18mm;
+}
